@@ -1,114 +1,264 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
-import { CheckCircleIcon } from '@heroicons/react/24/outline';
+import {
+  CurrencyPoundIcon,
+  ClockIcon,
+  ChartBarIcon,
+  MagnifyingGlassIcon,
+  MapPinIcon,
+  PhoneIcon,
+  CheckBadgeIcon,
+  ReceiptPercentIcon,
+  Cog6ToothIcon,
+  CameraIcon,
+  MapIcon,
+  ShieldCheckIcon,
+  DocumentChartBarIcon,
+  BanknotesIcon,
+} from '@heroicons/react/24/outline';
 
 const features = [
-  { name: 'Weekly Wages Calculation', icon: 'calculator' },
-  { name: 'Start & Finish Time + Shift Allocation', icon: 'clock' },
-  { name: 'Delivery Time Average', icon: 'chart' },
-  { name: 'Search Restaurant/Driver', icon: 'search' },
-  { name: 'Per-Mile Calculations & Amounts', icon: 'car' },
-  { name: 'Call the Customer (one-tap)', icon: 'phone' },
-  { name: 'Delivery Status: Ongoing/Delivered', icon: 'status' },
-  { name: 'Daily Deliveries, Expenses & Petrol Costs', icon: 'receipt' },
-  { name: 'Hourly Rate & Price per Mile setup', icon: 'settings' },
-  { name: 'Find Address by Photo (OCR)', icon: 'camera' },
-  { name: 'Driver Tracking (GPS)', icon: 'map' },
-  { name: 'Authorize Driver to Work / Right-to-Work Check', icon: 'check' },
-  { name: 'Driver Performance', icon: 'performance' },
-  { name: 'Detailed Reports', icon: 'report' },
-  { name: 'Due Payments', icon: 'payment' },
+  { name: 'Weekly Wages Calculation', icon: CurrencyPoundIcon },
+  { name: 'Start & Finish Time + Shift Allocation', icon: ClockIcon },
+  { name: 'Delivery Time Average', icon: ChartBarIcon },
+  { name: 'Search Restaurant/Driver', icon: MagnifyingGlassIcon },
+  { name: 'Per-Mile Calculations & Amounts', icon: MapPinIcon },
+  { name: 'Call the Customer (one-tap)', icon: PhoneIcon },
+  { name: 'Delivery Status: Ongoing/Delivered', icon: CheckBadgeIcon },
+  { name: 'Daily Deliveries, Expenses & Petrol Costs', icon: ReceiptPercentIcon },
+  { name: 'Hourly Rate & Price per Mile setup', icon: Cog6ToothIcon },
+  { name: 'Find Address by Photo (OCR)', icon: CameraIcon },
+  { name: 'Driver Tracking (GPS)', icon: MapIcon },
+  { name: 'Right-to-Work Checks', icon: ShieldCheckIcon },
+  { name: 'Driver Performance', icon: ChartBarIcon },
+  { name: 'Detailed Reports', icon: DocumentChartBarIcon },
+  { name: 'Due Payments', icon: BanknotesIcon },
 ];
 
 const faqs = [
-  { question: 'How do drivers sign in?', answer: 'Drivers sign in securely using their phone number and a one-time passcode (OTP).' },
-  { question: 'Do I need an ePOS system to use DeliveryGo?', answer: 'No, DeliveryGo works independently. It’s designed to be a standalone solution for managing your delivery drivers.' },
-  { question: 'Is location tracking required?', answer: 'Location permissions are only needed for live driver tracking; you can still use all other features without it.' },
-  { question: 'How are wages calculated?', answer: 'You set an hourly rate and a price per mile, and the app automatically calculates weekly totals for each driver.' },
-  { question: 'Can I export my data?', answer: 'Yes. Simply email our support team at support@deliverygo.co.uk to request a data export.' },
+  { q: 'How do drivers sign in?', a: 'Drivers sign in securely using their phone number and a one-time passcode (OTP).' },
+  { q: 'Do I need an ePOS system to use DeliveryGo?', a: 'No. DeliveryGo works independently. It’s a standalone solution for managing delivery drivers.' },
+  { q: 'Is location tracking required?', a: 'Only for live driver tracking; all other features work without it.' },
+  { q: 'How are wages calculated?', a: 'Set an hourly rate and price per mile. The app calculates weekly totals per driver.' },
+  { q: 'Can I export my data?', a: 'Yes. Email support@deliverygo.co.uk to request a data export.' },
 ];
 
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-gray-100 py-20 lg:py-24">
-        <div className="container mx-auto px-4 flex flex-col items-center text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
-            Manage delivery drivers. <br className="hidden md:inline" />Save time. Pay accurately.
-          </h1>
-          <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-            Takeaways use till/ePOS for orders, but most still manage drivers on paper—tracking hours, mileage, deliveries, and wages by hand. It’s slow, error-prone, and stressful. DeliveryGo brings driver management into one place—track shifts and deliveries, calculate wages automatically, and get clear performance reports.
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-white dark:from-gray-900 dark:via-gray-900 dark:to-gray-900" />
+        <div className="container mx-auto px-6 relative py-20 lg:py-28">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="inline-flex items-center gap-2 rounded-full border border-indigo-200 dark:border-indigo-900 bg-white/70 dark:bg-gray-800/70 px-3 py-1 text-sm text-indigo-700 dark:text-indigo-300">
+                Built for UK takeaways <span className="text-indigo-400">•</span> GDPR aware
+              </p>
+              <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight">
+                Manage delivery drivers.<br className="hidden md:inline" /> Save time. Pay accurately.
+              </h1>
+              <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 max-w-xl">
+                Replace paper timesheets with one simple app. Track shifts & deliveries, calculate wages automatically,
+                and see clear performance reports—without changing your till or ePOS.
+              </p>
+              <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+                <AppStoreBadge />
+                <Link
+                  href="/support"
+                  className="border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-100 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                >
+                  Contact Support
+                </Link>
+              </div>
+
+              {/* Trust / stats */}
+              <div className="mt-8 flex flex-wrap gap-6 text-sm text-gray-600 dark:text-gray-300">
+                <div className="flex items-center gap-2">
+                  <ShieldCheckIcon className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                  No ads • No data brokers • No cross-app tracking
+                </div>
+                <div className="flex items-center gap-2">
+                  <ClockIcon className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                  Setup in minutes
+                </div>
+              </div>
+            </div>
+
+            <div className="relative order-2 lg:order-2">
+              <div className="rounded-2xl bg-center shadow-sm bg-white dark:bg-gray-900 p-4">
+                <Image
+                  src="/dashboard.png"
+                  alt="DeliveryGo iOS app screenshot"
+                  width={1200}
+                  height={800}
+                  className="mx-auto h-auto max-h-[650px] w-auto rounded-xl"
+                />
+              </div>
+              <div className="pointer-events-none absolute -bottom-10 -left-10 -z-10 h-64 w-64 rounded-full bg-indigo-100 dark:bg-indigo-900 blur-3xl opacity-60" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURE GRID */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white">All the tools you need in one app</h2>
+          <p className="mt-3 text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Everything you track on paper—now automated, accurate, and ready to report.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row justify-center items-center sm:space-x-4 space-y-4 sm:space-y-0">
+
+          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map(({ name, icon: Icon }, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-5 shadow-sm"
+              >
+                <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-50 dark:bg-indigo-900/40">
+                  <Icon className="h-5 w-5 text-indigo-700 dark:text-indigo-300" />
+                </div>
+                <p className="text-gray-800 dark:text-gray-100">{name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* EXTRA CONTENT BLOCK (image + copy) */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            {/* Image first on desktop to complement the previous section */}
+            <div className="order-1">
+              <div className="rounded-2xl  shadow-sm bg-white dark:bg-gray-900 p-4">
+                <Image
+                  src="/report.png"
+                  alt="DeliveryGo workflow example"
+                  width={1200}
+                  height={800}
+                  className="mx-auto h-auto max-h-[650px] w-auto rounded-xl"
+                />
+              </div>
+            </div>
+
+            <div className="order-2">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Optimised for Real-World Deliveries</h2>
+              <p className="mt-4 text-gray-700 dark:text-gray-300">
+                DeliveryGo is designed for busy takeaway teams. Keep everything in one place—from shift start to proof of delivery—so you
+                can move faster and pay accurately without the spreadsheets.
+              </p>
+              <ul className="mt-6 space-y-3 text-gray-800 dark:text-gray-100">
+                <li className="flex gap-2">
+                  <ChartBarIcon className="h-5 w-5 text-indigo-700 dark:text-indigo-300 mt-1" />
+                  Live stats: delivery time averages and deliveries per hour
+                </li>
+                <li className="flex gap-2">
+                  <MapIcon className="h-5 w-5 text-indigo-700 dark:text-indigo-300 mt-1" />
+                  Mileage tracking that feeds directly into wages
+                </li>
+                <li className="flex gap-2">
+                  <BanknotesIcon className="h-5 w-5 text-indigo-700 dark:text-indigo-300 mt-1" />
+                  Clear due payments and weekly totals for every driver
+                </li>
+              </ul>
+
+              <div className="mt-8 flex items-center gap-4">
+                <AppStoreBadge />
+                <Link href="/support" className="text-indigo-700 dark:text-indigo-300 font-semibold hover:underline">
+                  Need help? Contact Support
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* HOW IT WORKS */}
+      <section className="bg-gray-50 dark:bg-gray-800 py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white">How it works</h2>
+          <div className="mt-12 grid md:grid-cols-3 gap-6">
+            <Step num="1" title="Set your rates">
+              Configure hourly rates and price per mile for each driver.
+            </Step>
+            <Step num="2" title="Track shifts & deliveries">
+              Drivers clock in/out, log deliveries and mileage—live or after.
+            </Step>
+            <Step num="3" title="Auto-calculate wages & reports">
+              Weekly totals and detailed reports are generated automatically.
+            </Step>
+          </div>
+        </div>
+      </section>
+
+      {/* PROOF / SCREENSHOT */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div className="order-2 lg:order-1">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Built for UK takeaways</h2>
+              <p className="mt-4 text-gray-700 dark:text-gray-300">
+                GDPR-aware by design. Your data stays private and is used only to provide the service.
+                No third-party ads, data brokers, or cross-app tracking—ever.
+              </p>
+              <ul className="mt-6 space-y-3 text-gray-800 dark:text-gray-100">
+                <li className="flex gap-2"><ShieldCheckIcon className="h-5 w-5 text-indigo-700 dark:text-indigo-300 mt-1" /> Role-based access & right-to-work checks</li>
+                <li className="flex gap-2"><ClockIcon className="h-5 w-5 text-indigo-700 dark:text-indigo-300 mt-1" /> Accurate shifts and delivery time averages</li>
+                <li className="flex gap-2"><CurrencyPoundIcon className="h-5 w-5 text-indigo-700 dark:text-indigo-300 mt-1" /> Clear due payments and weekly wages</li>
+              </ul>
+              <div className="mt-8 flex items-center gap-4">
+                <AppStoreBadge />
+                <Link href="/support" className="text-indigo-700 dark:text-indigo-300 font-semibold hover:underline">Need help? Contact Support</Link>
+              </div>
+            </div>
+            <div className="order-1 lg:order-2">
+              {/* Replace with your real screenshot: /public/dashboard.png */}
+              <div className="rounded-2xl shadow-sm bg-white dark:bg-gray-900 p-4">
+                <Image
+                  src="/delivery.png"
+                  alt="DeliveryGo dashboard preview"
+                  width={1200}
+                  height={800}
+                  className="mx-auto h-auto max-h-[650px] w-auto rounded-xl"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-gray-50 dark:bg-gray-800 py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white">Frequently asked questions</h2>
+          <div className="mt-10 max-w-3xl mx-auto divide-y divide-gray-200 dark:divide-gray-700 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+            {faqs.map((item, i) => (
+              <div key={i} className="p-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{item.q}</h3>
+                <p className="mt-2 text-gray-700 dark:text-gray-300">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Ready to replace paperwork?</h2>
+          <p className="mt-3 text-gray-700 dark:text-gray-300">Track, pay, and report—accurately and effortlessly.</p>
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <AppStoreBadge />
-            <Link href="/support" className="border border-gray-300 text-gray-700 font-bold py-3 px-6 rounded-lg text-lg hover:bg-gray-200 transition-colors duration-200 focus-visible:outline-indigo-600">
+            <Link
+              href="/support"
+              className="border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-100 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            >
               Contact Support
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Grid Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">All the Tools You Need in One App</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="flex items-start bg-gray-50 p-6 rounded-lg shadow-sm">
-                <CheckCircleIcon className="h-6 w-6 text-indigo-600 mt-1 flex-shrink-0" aria-hidden="true" />
-                <p className="ml-4 text-lg text-gray-700">{feature.name}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How it Works Section */}
-      <section className="bg-gray-50 py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12">How It Works</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-6 bg-white rounded-lg shadow">
-              <span className="text-5xl font-bold text-indigo-600">1</span>
-              <h3 className="mt-4 text-xl font-semibold text-gray-900">Set Your Rates</h3>
-              <p className="mt-2 text-gray-600">Easily configure hourly rates and a price per mile for your drivers.</p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow">
-              <span className="text-5xl font-bold text-indigo-600">2</span>
-              <h3 className="mt-4 text-xl font-semibold text-gray-900">Track Shifts & Deliveries</h3>
-              <p className="mt-2 text-gray-600">Drivers use the app to track their shifts, deliveries, and mileage in real-time.</p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow">
-              <span className="text-5xl font-bold text-indigo-600">3</span>
-              <h3 className="mt-4 text-xl font-semibold text-gray-900">Auto-Calculate Wages & Reports</h3>
-              <p className="mt-2 text-gray-600">DeliveryGo automatically calculates wages and generates detailed performance reports for you.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Built for UK Takeaways Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 text-center max-w-4xl">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Built for UK Takeaways</h2>
-          <p className="text-lg text-gray-700">
-            DeliveryGo is designed specifically for the UK market. We adhere to **GDPR and UK data protection laws**, ensuring your data is kept private and secure. We focus on providing a simple, reliable solution so you can focus on your business. We never use third-party ads, data brokers, or cross-app tracking.
-          </p>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="bg-gray-50 py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Frequently Asked Questions</h2>
-          <div className="max-w-3xl mx-auto space-y-6">
-            {faqs.map((faq, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow border border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
-                <p className="mt-2 text-gray-600">{faq.answer}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -116,16 +266,33 @@ export default function Home() {
   );
 }
 
-// App Store Badge Component for a clean CTA
-const AppStoreBadge = () => (
-  <Link href="#" aria-label="Get the iOS App on the App Store" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-600 rounded-lg">
-    <Image
-      src="/app-store-badge.png"
-      alt="Download on the App Store"
-      width={160}
-      height={50}
-      className="h-[50px] w-auto"
-      priority
-    />
-  </Link>
-);
+/* Reusable step card */
+function Step({ num, title, children }: { num: string; title: string; children: React.ReactNode }) {
+  return (
+    <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-6 shadow-sm">
+      <span className="text-5xl font-bold text-indigo-600 dark:text-indigo-300">{num}</span>
+      <h3 className="mt-3 text-xl font-semibold text-gray-900 dark:text-white">{title}</h3>
+      <p className="mt-2 text-gray-700 dark:text-gray-300">{children}</p>
+    </div>
+  );
+}
+
+/* App Store badge (use your App Store URL when live) */
+function AppStoreBadge() {
+  return (
+    <Link
+      href="#"
+      aria-label="Download DeliveryGo on the App Store"
+      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-600 rounded-lg"
+    >
+      <Image
+        src="/app-store-badge.png" // file should be at /public/app-store-badge.png
+        alt="Download on the App Store"
+        width={160}
+        height={50}
+        className="h-[50px] w-auto"
+        priority
+      />
+    </Link>
+  );
+}
