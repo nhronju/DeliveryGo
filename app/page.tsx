@@ -1,103 +1,131 @@
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
+
+const features = [
+  { name: 'Weekly Wages Calculation', icon: 'calculator' },
+  { name: 'Start & Finish Time + Shift Allocation', icon: 'clock' },
+  { name: 'Delivery Time Average', icon: 'chart' },
+  { name: 'Search Restaurant/Driver', icon: 'search' },
+  { name: 'Per-Mile Calculations & Amounts', icon: 'car' },
+  { name: 'Call the Customer (one-tap)', icon: 'phone' },
+  { name: 'Delivery Status: Ongoing/Delivered', icon: 'status' },
+  { name: 'Daily Deliveries, Expenses & Petrol Costs', icon: 'receipt' },
+  { name: 'Hourly Rate & Price per Mile setup', icon: 'settings' },
+  { name: 'Find Address by Photo (OCR)', icon: 'camera' },
+  { name: 'Driver Tracking (GPS)', icon: 'map' },
+  { name: 'Authorize Driver to Work / Right-to-Work Check', icon: 'check' },
+  { name: 'Driver Performance', icon: 'performance' },
+  { name: 'Detailed Reports', icon: 'report' },
+  { name: 'Due Payments', icon: 'payment' },
+];
+
+const faqs = [
+  { question: 'How do drivers sign in?', answer: 'Drivers sign in securely using their phone number and a one-time passcode (OTP).' },
+  { question: 'Do I need an ePOS system to use DeliveryGo?', answer: 'No, DeliveryGo works independently. It’s designed to be a standalone solution for managing your delivery drivers.' },
+  { question: 'Is location tracking required?', answer: 'Location permissions are only needed for live driver tracking; you can still use all other features without it.' },
+  { question: 'How are wages calculated?', answer: 'You set an hourly rate and a price per mile, and the app automatically calculates weekly totals for each driver.' },
+  { question: 'Can I export my data?', answer: 'Yes. Simply email our support team at support@deliverygo.co.uk to request a data export.' },
+];
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      {/* Hero Section */}
+      <section className="bg-gray-100 py-20 lg:py-24">
+        <div className="container mx-auto px-4 flex flex-col items-center text-center">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
+            Manage delivery drivers. <br className="hidden md:inline" />Save time. Pay accurately.
+          </h1>
+          <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
+            Takeaways use till/ePOS for orders, but most still manage drivers on paper—tracking hours, mileage, deliveries, and wages by hand. It’s slow, error-prone, and stressful. DeliveryGo brings driver management into one place—track shifts and deliveries, calculate wages automatically, and get clear performance reports.
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row justify-center items-center sm:space-x-4 space-y-4 sm:space-y-0">
+            <AppStoreBadge />
+            <Link href="/support" className="border border-gray-300 text-gray-700 font-bold py-3 px-6 rounded-lg text-lg hover:bg-gray-200 transition-colors duration-200 focus-visible:outline-indigo-600">
+              Contact Support
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* Feature Grid Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">All the Tools You Need in One App</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <div key={index} className="flex items-start bg-gray-50 p-6 rounded-lg shadow-sm">
+                <CheckCircleIcon className="h-6 w-6 text-indigo-600 mt-1 flex-shrink-0" aria-hidden="true" />
+                <p className="ml-4 text-lg text-gray-700">{feature.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it Works Section */}
+      <section className="bg-gray-50 py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-12">How It Works</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="p-6 bg-white rounded-lg shadow">
+              <span className="text-5xl font-bold text-indigo-600">1</span>
+              <h3 className="mt-4 text-xl font-semibold text-gray-900">Set Your Rates</h3>
+              <p className="mt-2 text-gray-600">Easily configure hourly rates and a price per mile for your drivers.</p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow">
+              <span className="text-5xl font-bold text-indigo-600">2</span>
+              <h3 className="mt-4 text-xl font-semibold text-gray-900">Track Shifts & Deliveries</h3>
+              <p className="mt-2 text-gray-600">Drivers use the app to track their shifts, deliveries, and mileage in real-time.</p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow">
+              <span className="text-5xl font-bold text-indigo-600">3</span>
+              <h3 className="mt-4 text-xl font-semibold text-gray-900">Auto-Calculate Wages & Reports</h3>
+              <p className="mt-2 text-gray-600">DeliveryGo automatically calculates wages and generates detailed performance reports for you.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Built for UK Takeaways Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4 text-center max-w-4xl">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Built for UK Takeaways</h2>
+          <p className="text-lg text-gray-700">
+            DeliveryGo is designed specifically for the UK market. We adhere to **GDPR and UK data protection laws**, ensuring your data is kept private and secure. We focus on providing a simple, reliable solution so you can focus on your business. We never use third-party ads, data brokers, or cross-app tracking.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="bg-gray-50 py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Frequently Asked Questions</h2>
+          <div className="max-w-3xl mx-auto space-y-6">
+            {faqs.map((faq, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow border border-gray-200">
+                <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
+                <p className="mt-2 text-gray-600">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
+
+// App Store Badge Component for a clean CTA
+const AppStoreBadge = () => (
+  <Link href="#" aria-label="Get the iOS App on the App Store" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-600 rounded-lg">
+    <Image
+      src="/app-store-badge.png"
+      alt="Download on the App Store"
+      width={160}
+      height={50}
+      className="h-[50px] w-auto"
+      priority
+    />
+  </Link>
+);
