@@ -281,7 +281,7 @@ function Step({ num, title, children }: { num: string; title: string; children: 
 function AppStoreBadge() {
   return (
     <Link
-      href="#"
+      href="https://apps.apple.com/us/app/deliverygo-delivery-driver/id6751056501"
       aria-label="Download DeliveryGo on the App Store"
       className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-600 rounded-lg"
     >
